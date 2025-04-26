@@ -158,7 +158,7 @@ summary {
 #btn-top {
     position: fixed;
     bottom: calc(#{vars.$footer-height} + 20px);
-    right: 20px;
+    right: 30px;
     padding: 10px 15px;
     background-color: vars.$clr-6;
     color: vars.$clr-1;
@@ -175,8 +175,4 @@ summary {
         transform: scale(1);
         @include mix.imageHoverEffect(1.2)
     }
-}
-
-.hidden {
-    display: none;
 }
