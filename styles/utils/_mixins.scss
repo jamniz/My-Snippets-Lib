@@ -1,0 +1,80 @@
+@use "_variables" as vars;
+
+// Styles de base
+@mixin basic {
+    font-family: vars.$ff-1;
+    background: linear-gradient(to bottom, vars.$clr-1 20%, vars.$clr-3 100%);
+    background-attachment: fixed;
+    background-size: cover;
+    height: 100vh;
+    color: vars.$clr-5;
+}
+
+
+@mixin list-style-inside($content: "•", $margin: 5px) {
+    list-style: none;
+    list-style-position: inside;
+
+    li::before {
+        content: $content;
+        margin-right: $margin;
+    }
+}
+
+@mixin snippet-info {
+    font-size: clamp(0.8rem, 2.8vw, 1.2rem);
+    padding: 0.5rem 1rem;
+}
+
+@mixin link-1 {
+    color: vars.$clr-5;
+    text-decoration: none;
+
+    &:hover {
+        // text-decoration: underline;
+        font-weight: 600;
+    }
+}
+
+@mixin link-2 {
+    color: vars.$clr-1;
+    text-decoration: none;
+
+    &:hover {
+        // text-decoration: underline;
+        font-weight: 600;
+    }
+}
+
+@mixin imageHoverEffect($scale) {
+    &:hover {
+        transform: scale($scale);
+        transition: transform 0.1s ease-in-out;
+    }
+}
+
+// Grid-layout 
+@mixin grid-layout($columns: repeat(4, 1fr),
+    $rows: max-content,
+    // $rows: min-content,
+    $gap: 0,
+    // $align: stretch,
+    $align: start,
+    $justify: stretch,
+    $flow: row) {
+    display: grid;
+    grid-template-columns: $columns;
+    grid-template-rows: $rows;
+    gap: $gap;
+    align-items: $align;
+    justify-items: $justify;
+    grid-auto-flow: $flow;
+}
+
+// Flexbox
+@mixin flex-center($direction: row, $justify: space-around, $align: center) {
+    display: flex;
+    flex-direction: $direction;
+    justify-content: $justify;
+    align-items: $align;
+}

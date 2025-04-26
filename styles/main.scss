@@ -1,0 +1,182 @@
+@use "utils/_variables" as vars;
+@use "utils/_mixins" as mix;
+
+@forward "../snippets/snippet1/_snippet1";
+
+body {
+    @include mix.basic;
+    @include mix.grid-layout($columns: 1fr);
+}
+
+nav,
+footer {
+    background-color: vars.$clr-6;
+    color: vars.$clr-1;
+    z-index: 10;
+    position: fixed;
+    left: 0;
+    width: 100%;
+    padding: 0 1rem;
+}
+
+nav {
+    grid-row: 1/2;
+    top: 0;
+    height: vars.$navbar-height;
+
+    ul {
+        @include mix.flex-center;
+    }
+
+    a {
+        font-size: clamp(1rem, 1.8vw, 1.6rem);
+        @include mix.link-2;
+        line-height: vars.$navbar-height;
+    }
+}
+
+footer {
+    grid-row: 3/4;
+    bottom: 0;
+    height: vars.$footer-height;
+    @include mix.flex-center;
+}
+
+.f-it1,
+.f-it3 {
+    img {
+        width: clamp(0.6rem, 2.2vw, 1.4rem);
+        align-self: center;
+        @include mix.imageHoverEffect(1.8)
+    }
+}
+
+.f-it2 {
+    font-size: clamp(0.6rem, 1.6vw, 1rem);
+    opacity: 0.6;
+}
+
+main {
+    grid-row: 2/3;
+    @include mix.grid-layout;
+    padding: vars.$navbar-height 0 vars.$footer-height;
+    margin: clamp(1rem, 5%, 2rem) 0;
+}
+
+.title1,
+.title2,
+.disclaimer,
+.A-snippets {
+    grid-column: 1 / span4;
+}
+
+.title1 {
+    grid-row: 1/2;
+    font-family: vars.$ff-2;
+    font-size: clamp(1rem, 4vw, 2rem);
+    font-weight: 600;
+
+    p {
+        text-align: center;
+        padding-top: 1rem;
+    }
+}
+
+.disclaimer {
+    grid-row: 2/3;
+    margin: 6% 8%;
+    @include mix.flex-center($direction: column, $justify: space-between);
+
+    p {
+        padding-top: 1.4vw;
+        font-size: clamp(0.8rem, 2.2vw, 1.4rem);
+        line-height: 1.6;
+    }
+
+    .zoneImg1 {
+        padding: 2rem;
+        width: clamp(45vw, 60%, 50vw);
+        margin: auto;
+    }
+
+    @media screen and (min-width: vars.$L-laptop) {
+        flex-direction: row;
+    }
+}
+
+.title2 {
+    grid-row: 3/4;
+    font-size: clamp(1rem, 2.8vw, 1.6rem);
+    padding: 7%;
+    display: block;
+    margin: clamp(1rem, 10%, 2rem);
+
+    a {
+        @include mix.link-1;
+    }
+
+    p {
+        line-height: 1.8;
+        font-family: vars.$ff-2;
+    }
+
+    ul {
+        font-size: clamp(0.8rem, 2.2vw, 1.2rem);
+        @include mix.list-style-inside("→");
+    }
+}
+
+.A-snippets {
+    grid-row: 4/5;
+    @include mix.grid-layout($gap: 3px);
+    margin: 0 10%;
+    padding-bottom: 15vh;
+}
+
+.snippet1 {
+    grid-row: 1/2;
+    grid-column: 1 / span4;
+
+    @media screen and (min-width: vars.$L-laptop) {
+        grid-column: 1 / span 2;
+        margin-right: 1rem;
+    }
+}
+
+details {
+    padding: 0.5rem;
+    background-color: vars.$clr-2;
+    border-radius: 10px;
+}
+
+summary {
+    font-size: clamp(0.8rem, 3vw, 1.8rem);
+    font-weight: 600;
+    padding: 2vw 4vw;
+}
+
+#btn-top {
+    position: fixed;
+    bottom: calc(#{vars.$footer-height} + 20px);
+    right: 20px;
+    padding: 10px 15px;
+    background-color: vars.$clr-6;
+    color: vars.$clr-1;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: clamp(0.8rem, 2.6vw, 1.4rem);
+    opacity: 0;
+    transform: scale(0.8);
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+
+    &.visible {
+        opacity: 1;
+        transform: scale(1);
+        @include mix.imageHoverEffect(1.2)
+    }
+}
+
+.hidden {
+    display: none;
+}

@@ -1,0 +1,87 @@
+@use "../../styles/utils/_variables" as vars;
+@use "../../styles/utils/_mixins" as mix;
+
+$pause-duration: 2s;
+$animation-timing: 20s; // Durée totale de l'animation (3s par carte)
+$snp1-items: 4; // Nombre total de cartes
+$animation-delay-fraction: $animation-timing / $snp1-items;
+$animation-steps-fraction: 100 / $snp1-items;
+$pause-percentage: (
+    $pause-duration / $animation-timing) * 100;
+
+.carousel-1 {
+    position: relative;
+    height: 30vh;
+    width: auto;
+    @include mix.flex-center(column, center
+);
+}
+
+.snp1-item {
+    position: absolute;
+    width: 50%;
+    height: 10vh;
+    border-radius: 25px;
+    border: 2px solid vars.$clr-7;
+    box-shadow: vars.$shadow-2;
+    text-align: center;
+    padding-top: 1vh;
+    @include mix.flex-center($justify: center);
+    gap: 2%;
+    opacity: 0;
+    transform: scale(0.8);
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+    animation: carousel-1-animate $animation-timing linear infinite;
+    animation-play-state: running; // Par défaut
+
+    &:hover {
+        border: 2px solid vars.$clr-8;
+        transition: border 0.3s ease;
+    }
+
+    .carousel-1.paused .snp1-item {
+        animation-play-state: paused;
+    }
+}
+
+@keyframes carousel-1-animate {
+    0% {
+        transform: translateY(100%) scale(0.5);
+        opacity: 0;
+    }
+
+    25% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+
+    #{25% + $pause-percentage} {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: translateY(-100%) scale(0.5);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateY(-100%) scale(0.5);
+        opacity: 0;
+    }
+}
+
+@for $i from 1 through $snp1-items {
+    .snp1-item:nth-child(#{$i}) {
+        animation: carousel-1-animate $animation-timing linear infinite;
+        animation-delay: calc(#{$animation-delay-fraction} * (#{$i - 1}));
+    }
+}
+
+.info-snp1 {
+    @include mix.snippet-info;
+
+    ul {
+        @include mix.list-style-inside("–");
+    }
+}
