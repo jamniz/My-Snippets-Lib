@@ -4,5 +4,9 @@ Si vous êtes à la recherche d’un site pédagogique, inspirant, ou visuelleme
 C’est un **fourre-tout fonctionnel**, toujours en chantier, jamais figé, et **absolument pas conçu pour plaire à qui que ce soit**. Il ne vend pas de rêve, il n’est pas optimisé pour séduire Google, et il n’a **aucune ambition autre que d’exister pour moi**. Si ça vous dérange, respirez un grand coup… et cliquez ailleurs. 😁  
 _Bon, j’ai prévenu, mais si ça vous donne des idées, alors tant mieux pour vous et bienvenue_ 🙂
 
+➡️ C'est [par ici](https://jamniz.github.io/My-Snippets-Lib/)   🚀  
+_...à vos risques et périls_ 😁
+
+  
 > [!NOTE]
 > _En construction..._
